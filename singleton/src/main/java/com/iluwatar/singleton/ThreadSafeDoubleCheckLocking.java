@@ -22,6 +22,8 @@
  */
 package com.iluwatar.singleton;
 
+import java.io.Serializable;
+
 /**
  * Double check locking
  * <p/>
@@ -31,8 +33,9 @@ package com.iluwatar.singleton;
  *
  * @author mortezaadi@gmail.com
  */
-public final class ThreadSafeDoubleCheckLocking {
+public final class ThreadSafeDoubleCheckLocking implements Serializable {
 
+  private static final long serialVersionUID = 2141267979884382167L;
   private static volatile ThreadSafeDoubleCheckLocking instance;
 
   /**
@@ -72,5 +75,13 @@ public final class ThreadSafeDoubleCheckLocking {
       }
     }
     return result;
+  }
+  
+  /**
+   * Make singleton from serialize and deserialize operation.
+   * readResolve is used for replacing the object read from the stream (readObject).
+   */
+  protected ThreadSafeDoubleCheckLocking readResolve() {
+    return getInstance();
   }
 }
