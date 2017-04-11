@@ -36,4 +36,13 @@ public class AppTest {
     String[] args = {};
     App.main(args);
   }
+  
+  @Test
+  /**
+   * singleton with runtime api
+   */
+  public void javaCoreSingleton() {
+      Runtime.getRuntime();
+      System.out.println(Runtime.getRuntime().totalMemory());
+  }
 }
